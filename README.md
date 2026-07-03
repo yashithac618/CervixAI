@@ -2,7 +2,9 @@
 
 CervixAI is a research-grade tool for cervical cytology image classification. It uses a DenseNet121 model trained on the SIPaKMeD dataset to classify cervical cell images, estimate a clinical risk level, and generate a full pathology-style report — complete with a Grad-CAM heatmap that visually explains which region of the cell drove the prediction.
 
-![Dashboard]<img width="1887" height="970" alt="Screenshot 2026-07-03 221219" src="https://github.com/user-attachments/assets/f1031ad5-93aa-4683-9918-a70e5a40d58f" />
+**🔗 [Try the live demo](https://huggingface.co/spaces/ccyashi/cervixai)**
+
+<img width="1887" height="970" alt="Dashboard" src="https://github.com/user-attachments/assets/f1031ad5-93aa-4683-9918-a70e5a40d58f" />
 
 ---
 
@@ -12,7 +14,6 @@ CervixAI is a research-grade tool for cervical cytology image classification. It
 - [Getting Started](#getting-started)
 - [Model Details](#model-details)
 - [Tech Stack](#tech-stack)
-- [API Reference](#api-reference)
 - [Disclaimer](#disclaimer)
 
 ---
@@ -36,8 +37,7 @@ Each prediction is automatically mapped to a clinical risk tier — **Normal**, 
 ### Explainable AI (Grad-CAM)
 Every analysis produces a Grad-CAM heatmap overlay, highlighting the exact region of the image that most influenced the model's decision — shown side-by-side with the original.
 
-![Grad-CAM heatmap analysis]<img width="1882" height="975" alt="Screenshot 2026-07-03 221203" src="https://github.com/user-attachments/assets/4f358619-2549-4bcd-9b28-a5016fa1256c" />
-
+<img width="1882" height="975" alt="Grad-CAM heatmap analysis" src="https://github.com/user-attachments/assets/4f358619-2549-4bcd-9b28-a5016fa1256c" />
 
 ### Auto-Generated Reports
 Each result includes:
@@ -49,7 +49,7 @@ Each result includes:
 ### PDF Export
 Export any report as a clean, single-page clinical PDF, including scan ID, date, risk badge, classification breakdown, both images (original and heatmap), the clinical note, and the educational summary.
 
-![Exported PDF report]<img width="666" height="942" alt="Screenshot 2026-07-03 221551" src="https://github.com/user-attachments/assets/01b26c98-3f27-44c4-8b95-08b0151f762e" />
+<img width="666" height="942" alt="Exported PDF report" src="https://github.com/user-attachments/assets/01b26c98-3f27-44c4-8b95-08b0151f762e" />
 
 ### Second-Opinion Workflow
 Flag any result for manual review directly from the report card — useful for borderline or low-confidence predictions.
@@ -64,8 +64,6 @@ Single-file, responsive UI with dark mode enabled by default (toggle in the top-
 ---
 
 ## Getting Started
-
-
 
 1. Open the **Analyze** tab
 2. Drag and drop one or more cervical cell images (JPG, PNG, or TIFF)
@@ -101,5 +99,3 @@ Single-file, responsive UI with dark mode enabled by default (toggle in the top-
 ## Disclaimer
 
 CervixAI is a research and educational tool. It is **not** a certified medical device, and its output must **not** be used as a substitute for professional diagnosis, biopsy, or clinical judgment. Always consult a qualified pathologist or clinician for actual patient care decisions.
-
-Check out the configuration reference at https://huggingface.co/docs/hub/spaces-config-reference

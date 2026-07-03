@@ -194,9 +194,18 @@ def get_classes():
 # Serve the frontend LAST so it doesn't shadow the /api/* routes above.
 # ---------------------------------------------------------------------------
 
+# ---------------------------------------------------------------------------
+# DEBUG: Check whether the frontend exists inside the Docker container
+# ---------------------------------------------------------------------------
+
 STATIC_DIR = BASE_DIR / "static"
 
+print("BASE_DIR:", BASE_DIR)
+print("STATIC_DIR:", STATIC_DIR)
+print("STATIC EXISTS:", STATIC_DIR.exists())
+
 if STATIC_DIR.exists():
+    print("Serving frontend")
 
     @app.get("/", include_in_schema=False)
     def frontend():
@@ -205,7 +214,13 @@ if STATIC_DIR.exists():
     app.mount("/static", StaticFiles(directory=STATIC_DIR), name="static")
 
 else:
+    print("Serving API only")
 
     @app.get("/", include_in_schema=False)
     def root():
-        return {"status": "ok", "service": "CervixAI API"}
+        return {
+            "status": "ok",
+            "service": "CervixAI API",
+            "base_dir": str(BASE_DIR),
+            "static_dir": str(STATIC_DIR),
+        }

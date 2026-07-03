@@ -1,0 +1,6 @@
+backend/cervixai.db
+backend/uploads/
+__pycache__/
+*.pyc
+.venv/
+venv/

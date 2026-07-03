@@ -111,10 +111,6 @@ def _run_single_analysis(file: UploadFile, patient_name: Optional[str] = None) -
     }
 
 
-@app.get("/")
-def root():
-    return {"status": "ok", "service": "CervixAI API"}
-
 
 @app.post("/api/analyze")
 def analyze_single(file: UploadFile = File(...), patient_name: Optional[str] = Form(None)):
@@ -194,6 +190,22 @@ def get_classes():
 # Serve the frontend LAST so it doesn't shadow the /api/* routes above.
 # Only active when a bundled ./static/index.html exists (e.g. Docker deploy).
 # ---------------------------------------------------------------------------
+# ---------------------------------------------------------------------------
+# Serve the frontend LAST so it doesn't shadow the /api/* routes above.
+# ---------------------------------------------------------------------------
+
 STATIC_DIR = BASE_DIR / "static"
+
 if STATIC_DIR.exists():
-    app.mount("/", StaticFiles(directory=STATIC_DIR, html=True), name="static")
+
+    @app.get("/", include_in_schema=False)
+    def frontend():
+        return FileResponse(STATIC_DIR / "index.html")
+
+    app.mount("/static", StaticFiles(directory=STATIC_DIR), name="static")
+
+else:
+
+    @app.get("/", include_in_schema=False)
+    def root():
+        return {"status": "ok", "service": "CervixAI API"}

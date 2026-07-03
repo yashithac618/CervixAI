@@ -307,10 +307,12 @@
   // If opened directly as a file (file://) or from a dev server on a different
   // port than the backend, talk to localhost:8000. If served BY the FastAPI
   // backend itself (Docker/HF deploy), use the same origin automatically.
-  const API_BASE = (location.protocol === 'http:' || location.protocol === 'https:')
-    && location.port === '8000'
-    ? location.origin
-    : 'http://localhost:8000';
+  // Automatically use the current site in production,
+// but localhost:8000 when developing locally.
+  const API_BASE =
+    window.location.hostname === "localhost"
+      ? "http://localhost:8000"
+      : window.location.origin;
 
   // ====== INTRO ======
   setTimeout(()=>{
